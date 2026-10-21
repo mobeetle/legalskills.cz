@@ -158,9 +158,9 @@ export function selftest() {
 
   assert(!validate('A', 'bad', true), 'bad email must fail');
   assert(!validate('Bo', 'a@b.cz', false), 'missing consent must fail');
-  assert(validate('Božena', 'boz@example.cz', true), 'valid input must pass');
+  assert(validate('Božena', 'selftest@example.invalid', true), 'valid input must pass');
 
-  const { token, exp } = mint('Božena', 'boz@example.cz', 'cs', { srcDir, dataDir });
+  const { token, exp } = mint('Božena', 'selftest@example.invalid', 'cs', { srcDir, dataDir });
   assert(token.length >= 32, 'token must be unguessable');
   assert(exp - Date.now() / 1000 > 47 * 3600, 'TTL must be ~48h');
 

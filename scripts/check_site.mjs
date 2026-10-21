@@ -14,7 +14,7 @@ import { fileURLToPath } from 'node:url';
 import { renderPage, SLUGS } from './render.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const SKIP_DIRS = new Set(['assets', 'scripts', '.git', '.openchamber', 'downloads', 'data', 'node_modules', '.workflow']);
+const SKIP_DIRS = new Set(['assets', 'scripts', '.git', '.openchamber', 'downloads', 'data', 'storage', 'node_modules', '.workflow']);
 const LINK_RE = /(?:href|src)="([^"]+)"/g;
 const DYNAMIC_PREFIXES = ['/api/', '/downloads/'];
 
@@ -81,8 +81,11 @@ function main() {
   // The HTML on disk is generated output. It must match a fresh render of
   // scripts/render.mjs, or the published site drifts from its source.
   const stale = [];
+  const expected = new Set();
   for (const slug of SLUGS) {
     const rel = slug || 'index.html';
+    expected.add(rel);
+    expected.add(path.join('en', rel));
     for (const lang of ['cs', 'en']) {
       const file = path.join(ROOT, lang === 'en' ? path.join('en', rel) : rel);
       if (!fs.existsSync(file)) {
@@ -93,6 +96,14 @@ function main() {
     }
   }
   if (stale.length) problems.push('stale generated pages:\n    ' + stale.sort().join('\n    '));
+
+  // A page on disk that render.mjs does not produce is an orphan: a page
+  // added by hand, or one whose source entry was removed. Either way it is
+  // published but unverifiable.
+  const orphans = files.filter((p) => !expected.has(p));
+  if (orphans.length) {
+    problems.push('orphan pages (not produced by render.mjs):\n    ' + orphans.sort().join('\n    '));
+  }
 
   console.log(`pages: ${files.length} (${cs.size} cs / ${en.size} en)`);
   if (problems.length) {

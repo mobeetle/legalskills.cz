@@ -56,10 +56,16 @@ restart. `docs.html` is dynamic by default because it hosts the download gate.
 
 ```sh
 npm run build      # write all .html (node scripts/build_site.mjs)
-npm run check      # fails if cs/en diverge or a link is broken
+npm run check      # fails if cs/en diverge, a link is broken, a generated page
+                    # is stale (differs from a fresh render), or a page on disk
+                    # is an orphan (not produced by render.mjs)
 npm test           # download gate selftest
 npm run cleanup    # purge expired 48h tokens (cron, hourly)
 ```
+
+The generated `.html` files are committed, so `npm run check` is what proves they
+still match `scripts/render.mjs`. After any change to the copy, run
+`npm run build` before `npm run check`.
 
 ## Editing content
 

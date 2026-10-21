@@ -94,7 +94,7 @@ const FOOT = {
     "contact": "Kontakt", "terms": "Podmínky užívání", "privacy": "Ochrana soukromí",
     "cookies": "Cookies",
     "disclaimer": "Nástroj pro přípravu podkladů. Nenahrazuje právníka — konečné slovo máte vždy vy.",
-    "rights": "Všechna práva vyhrazena.",
+    "rights": "Obsah webu — všechna práva vyhrazena. Stažitelná sada je pod licencí Apache 2.0.",
   },
   "en": {
     "product": "Product", "res": "Resources", "company": "Company",
@@ -107,7 +107,7 @@ const FOOT = {
     "contact": "Contact", "terms": "Terms", "privacy": "Privacy",
     "cookies": "Cookies",
     "disclaimer": "A preparation tool. Not legal advice — you always have the final word.",
-    "rights": "All rights reserved.",
+    "rights": "Site content — all rights reserved. The downloadable suite is licensed under Apache 2.0.",
   },
 };
 
