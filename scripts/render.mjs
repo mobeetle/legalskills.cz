@@ -118,6 +118,7 @@ const PROVIDER = {
     "address": "Kaprova 42/14, Staré Město, 110 00 Praha 1",
     "ico": "028 57 626",
     "registry": "Zapsaná v obchodním rejstříku vedeném Městským soudem v Praze, oddíl C, vložka 224578.",
+    "databox": "Datová schránka: u3agkw6",
     "director": "Jednatel: JUDr. Lukáš Michna, LL.M., Ph.D.",
     "email": "hello@legalskills.cz",
     "web": "legalskills.cz",
@@ -129,6 +130,7 @@ const PROVIDER = {
     "address": "Kaprova 42/14, Staré Město, 110 00 Prague 1, Czech Republic",
     "ico": "028 57 626",
     "registry": "Registered in the Commercial Register kept by the Municipal Court in Prague, Section C, Insert 224578.",
+    "databox": "Data box: u3agkw6",
     "director": "Managing director: JUDr. Lukáš Michna, LL.M., Ph.D.",
     "email": "hello@legalskills.cz",
     "web": "legalskills.cz",
@@ -254,7 +256,7 @@ function footer(lang) {
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© <span data-year>2026</span> ${p['name']} · ${p['web']} · ${p['address']} · ${(lang === 'cs' ? 'IČO' : 'Company No.')} ${p['ico']}<br>${p['registry']}</span>
+      <span>© <span data-year>2026</span> ${p['name']} · ${p['web']} · ${p['address']} · ${(lang === 'cs' ? 'IČO' : 'Company No.')} ${p['ico']} · ${p['databox']}<br>${p['registry']}</span>
       <span>${(lang === 'cs' ? 'Nenahrazuje právní službu' : 'Not legal advice')} · ${f['rights']}</span>
     </div>
   </div>
@@ -1226,6 +1228,7 @@ function contact_page(lang) {
     [id_k, id_h] = ["Kontakty a identifikační údaje", "Kdo za legalskills.cz stojí"];
     id_rows = [["Provozovatel", p['name']], ["Sídlo", p['address']],
                ["IČO", p['ico']], ["Rejstřík", p['registry']],
+               ["Datová schránka", "u3agkw6"],
                ["Jednatel", "JUDr. Lukáš Michna, LL.M., Ph.D."],
                ["E-mail", `<a href="mailto:${p["email"]}">${p["email"]}</a>`],
                ["Web", p['web']]];
@@ -1241,6 +1244,7 @@ function contact_page(lang) {
     [id_k, id_h] = ["Contacts and company details", "Who runs legalskills.cz"];
     id_rows = [["Operator", p['name']], ["Registered office", p['address']],
                ["Company No. (IČO)", p['ico']], ["Register", p['registry']],
+               ["Data box", "u3agkw6"],
                ["Managing director", "JUDr. Lukáš Michna, LL.M., Ph.D."],
                ["Email", `<a href="mailto:${p["email"]}">${p["email"]}</a>`],
                ["Web", p['web']]];
@@ -1492,11 +1496,11 @@ function legal_page(lang, kind) {
   let op_block;
   if (cs) {
     op_block = `<h2>${heading}</h2><p><strong>${op["name"]}</strong>, ${op["address"]}, `
-      + `IČO ${op["ico"]}. ${op["registry"]} ${op["director"]} `
+      + `IČO ${op["ico"]}. ${op["registry"]} ${op["databox"]}. ${op["director"]} `
       + `Kontakt: <a href="mailto:${op["email"]}">${op["email"]}</a>.</p>`;
   } else {
     op_block = `<h2>${heading}</h2><p><strong>${op["name"]}</strong>, ${op["address"]}, `
-      + `Company No. ${op["ico"]}. ${op["registry"]} ${op["director"]} `
+      + `Company No. ${op["ico"]}. ${op["registry"]} ${op["databox"]}. ${op["director"]} `
       + `Contact: <a href="mailto:${op["email"]}">${op["email"]}</a>.</p>`;
   }
   return `<main><section class="section-sm"><div class="wrap"><div class="prose">
