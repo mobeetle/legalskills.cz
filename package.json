@@ -1,0 +1,21 @@
+{
+  "name": "legalskills-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "LegalSkills.cz website — Express server, config-switchable static/dynamic rendering",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "DOWNLOAD_SRC_DIR=storage/bundles DOWNLOAD_DATA_DIR=storage/data node scripts/server.mjs",
+    "dev": "DOWNLOAD_SRC_DIR=storage/bundles DOWNLOAD_DATA_DIR=storage/data node scripts/server.mjs",
+    "build": "node scripts/build_site.mjs",
+    "check": "node scripts/check_site.mjs",
+    "test": "node scripts/download_api.mjs --selftest",
+    "cleanup": "node scripts/download_api.mjs --cleanup"
+  },
+  "dependencies": {
+    "express": "^5.3.0"
+  }
+}

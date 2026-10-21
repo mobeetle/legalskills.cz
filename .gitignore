@@ -1,0 +1,12 @@
+node_modules/
+.DS_Store
+.idea/
+.openchamber/
+.workflow/
+
+# Runtime state, never published: the lead list (names + e-mail addresses),
+# the download tokens, the server log and the served bundle.
+storage/
+
+# Minted download links are served from storage at runtime.
+downloads/

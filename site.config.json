@@ -1,0 +1,6 @@
+{
+  "default": "static",
+  "pages": {
+    "docs.html": "dynamic"
+  }
+}

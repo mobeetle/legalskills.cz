@@ -1,0 +1,26 @@
+# legalskills.cz website — systemd unit
+#
+#   sudo cp deploy/legalskills.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now legalskills
+#
+# Adjust User / WorkingDirectory / node path to your VPS.
+[Unit]
+Description=legalskills.cz website (Node/Express)
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/srv/www/legalskills.cz
+Environment=NODE_ENV=production
+Environment=HOST=127.0.0.1
+Environment=PORT=8765
+Environment=DOWNLOAD_SRC_DIR=/srv/legalskills/bundles
+Environment=DOWNLOAD_DATA_DIR=/srv/legalskills/data
+ExecStart=/usr/bin/node scripts/server.mjs
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
